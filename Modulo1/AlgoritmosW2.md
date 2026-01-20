@@ -166,6 +166,76 @@ Proceso:
 matemáticas tales funciones, series, etc. 
 - La notación asintótica es la que nos permite determinar la eficiencia de los  algoritmos.
 
-
 ### Analisis de algoritmos - BigO para aloritmos recursivos 
 
+Esta funcion calcula el año el cual la edad de limak sera mayor a la de bob, sin embargo, sabemos que aunque no es posible, es un buen ejemplo de recursividad.
+
+Estas funcion recibe tres paremetros de entrada, el primero es la edad de limak, el segundo la edad de bobo y el tercero el contador de años.
+
+Si la edad de limak es mayor a la de bob, regresaremos los años donde lo alcanza, de lo contrario, retornara la misma funcion, pero con los parametros iniciales manipulados, por lo que ahora en este punto la edad de limak se multiplicara por 3, la de bob por 2 y los años se sumara uno
+
+```
+    static int contarAnios(int limak, int bob, int anios){ 
+	// limak = 4  SUPOSICION DE ENTRADA
+	// bob = 7 SUPOSSICION DE ENTRADA
+	// anios = 0 SUPOSISCION DE ENTRADA
+
+        if(limak > bob){ // 1
+            return anios; // 1
+        }
+        return contarAnios(limak * 3, bob * 2, anios + 1);
+
+
+    SEGUNDA LLAMADA A LA FUNCION cuando Años=1
+    // limak = 4 * 3
+	// bob = 7 * 2
+	// anios = 0 + 1
+	
+    TERCERA LLAMADA A LA FUNCION
+	// limak = 4 * 3 * 3 
+	// bob = 7 * 2 * 2
+	// anios = 0 + 1 + 1
+	
+    CUARTA LLAMADA A LA FUNCION
+	// limak = 4 * 3 * 3 * 3 
+	// bob = 7 * 2 * 2 * 2
+	// anios = 0 + 1 + 1 + 1
+	
+    QUINTA LLAMADA A LA FUNCION
+	// limak = 4 * 3 * 3 * 3 * 3
+	// bob = 7 * 2 * 2 * 2 * 2
+	// anios = 0 + 1 + 1 + 1 + 1
+
+    Como vemos, hay un patron aqui el cual lo sintetizaremos a lo siguiente
+	// limak = 4 * 3 ^ i 
+	// bob = 7 * 2 ^ i
+	// anios = 0 + i
+
+Suponiendo que en el año = 1
+Año=1
+3^i = 1 // lo igualamos a uno por que es cuando anos=1
+log(3^i)=log1  //Propiedad de logaritmos
+ilog3 = log1
+
+Sin embargo, si queremos generalizar, cambiaremos anios=n, entonces:
+Año=n
+3^i = n // lo igualamos a uno por que es cuando anos=1
+log(3^i)=logn  //Propiedad de logaritmos
+ilog3 = logn
+i = log n / log 3
+i = log3(n) //donde 3 es el subindice de log
+//HASTA AQUI HEMOS CUBIERTO EL ANALISIS DEL PRIMER CASO, DEL CASO DE LIMAK
+
+Por lo tanto para el segundo caso haremos lo mismo, ya simplificado se vera como:
+2 ^ i = n
+i = log2(n) //donde 2 es un SUBINDICE, solamente esta n
+
+Entonces, la suma de esta funcion recursiva sera:
+t(n) = 10 + 1 + log3n + log 2 n + n
+Por lo tanto, el peor caso sera O(n)
+
+```
+
+
+
+## Ver archivo ->  LeonardoEscobar-Lab2-Algoritmos1.pdf
